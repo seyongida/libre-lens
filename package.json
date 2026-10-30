@@ -1,0 +1,22 @@
+{
+  "name": "libre-lens",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:e2e": "playwright test",
+    "check": "npm run test && npm run build && npm run test:e2e",
+    "format": "prettier --write src scripts tests index.html playwright.config.js package.json .github/workflows/pages.yml"
+  },
+  "dependencies": {
+    "tesseract.js": "^6.0.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "pngjs": "^7.0.0",
+    "prettier": "^3.9.10"
+  }
+}
