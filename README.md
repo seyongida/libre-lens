@@ -113,3 +113,10 @@ tests/                       순수 함수·실제 브라우저 테스트
 ```
 
 MIT License. OCR 구성요소의 별도 라이선스는 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)를 확인하세요.
+
+
+## 후원 광고 및 수익화 준비
+
+광고 계정 없이 사용할 수 있는 **정적 직접 후원 광고**를 지원합니다. 기본값은 비활성화이며, 실제 후원사와 계약한 뒤 `monetization.json`을 설정하고 다시 빌드하면 시작 화면에만 광고 카드가 표시됩니다. 사진 분석 화면에서는 숨기며 광고 스크립트·추적 픽셀·쿠키를 추가하지 않습니다.
+
+[수익화 운영 안내](docs/MONETIZATION.md)에 설정 예시, 게시·종료 방법, 호스팅 이전, AdSense 도입에 필요한 후속 절차를 정리했습니다. `public/guide.html`, `public/privacy.html`, `public/sponsor.html`은 사용 가이드·개인정보·후원 문의 페이지이며 빌드 결과와 오프라인 캐시에 포함됩니다. 실제 광고 계약이나 광고 네트워크 승인은 별도로 필요합니다.

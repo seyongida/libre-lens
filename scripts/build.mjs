@@ -1,6 +1,9 @@
 import { mkdir, cp, rm, readFile, writeFile, readdir } from "node:fs/promises";
 import { gzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
+import { renderSponsor } from "./sponsor.mjs";
+// Validate before downloading OCR files or changing the previous build.
+const sponsor = renderSponsor(JSON.parse(await readFile("monetization.json", "utf8")));
 await mkdir(".cache", { recursive: true });
 for (const lang of ["kor", "eng"]) {
   const file = `.cache/${lang}.traineddata.gz`;
@@ -18,7 +21,9 @@ await rm("dist", { recursive: true, force: true });
 await mkdir("dist/vendor", { recursive: true });
 await cp("public", "dist", { recursive: true });
 await cp("src", "dist/src", { recursive: true });
-await cp("index.html", "dist/index.html");
+const html = await readFile("index.html", "utf8");
+if (!html.includes("<!-- SPONSOR_SLOT -->")) throw Error("Sponsor slot missing");
+await writeFile("dist/index.html", html.replace("<!-- SPONSOR_SLOT -->", sponsor));
 await cp(
   "node_modules/tesseract.js/dist/tesseract.min.js",
   "dist/vendor/tesseract.min.js",
@@ -67,3 +72,4 @@ await writeFile(
 console.log(
   `Built ${all.length + 1} local assets. OCR included; no runtime CDN.`,
 );
+
